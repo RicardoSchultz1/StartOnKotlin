@@ -1,0 +1,70 @@
+package com.example.android2.telas
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+
+@Composable
+fun att2() {
+    
+    Column() {
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Cyan)
+            .height(45.dp)
+            .padding(10.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+
+        ) {
+            Text(text = "Modern Art UI",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold, )
+            Image(imageVector = Icons.Default.Settings, contentDescription = "")
+        }
+        
+        Column(modifier = Modifier
+            .background(Color.Black)
+            .fillMaxHeight()
+            .fillMaxWidth(0.4f)
+            .padding(5.dp)) {
+
+            Row(modifier = Modifier
+                .background(Color.Green)
+                .fillMaxHeight(0.5f)
+                .fillMaxWidth()
+                .padding(5.dp)
+            ) {
+
+            }
+            Row(
+
+            ) {
+                Row(modifier = Modifier
+                    .fillMaxWidth(1f)
+                    .background(Color.Red)
+                    .fillMaxHeight()) {
+
+                }
+                Row(
+                ) {
+
+                }
+            }
+        }
+
+        
+    }
+}

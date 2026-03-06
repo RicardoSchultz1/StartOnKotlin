@@ -1,0 +1,125 @@
+package com.example.android2
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.android2.telas.InfoScream
+import com.example.android2.telas.att
+import com.example.android2.telas.att2
+import com.example.android2.ui.theme.Android2Theme
+import kotlinx.coroutines.delay
+
+class MainActivity : ComponentActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Android2Theme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    //Chama Atividade 1
+                    //myList()
+
+                    //Chama Atividade 2
+                    Art()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun myList(){
+    Column(modifier = Modifier
+            .background(Color.LightGray)
+    ) {
+        att()
+    }
+
+}
+
+@Composable
+fun Art(){
+    Column() {
+        att2()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+@Composable
+fun MyApp() {
+    var showLoading = remember {
+        mutableStateOf(false)
+    }
+    LaunchedEffect(key1 = showLoading.value){
+        if (showLoading.value) {
+            delay(5000)
+            showLoading.value = false
+        }
+    }
+
+    Column(modifier = Modifier
+        .background(Color.LightGray)
+        .padding(32.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+
+    ) {
+
+        InfoScream()
+        Button(onClick = {showLoading.value = true}) {
+            Text(text = "Enviar")
+        }
+
+    }
+    if (showLoading.value) {
+        Box(
+            modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.Cyan.copy(alpha = 0.2f)),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    Android2Theme {
+        MyApp()
+    }
+}

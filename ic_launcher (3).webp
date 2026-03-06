@@ -1,0 +1,132 @@
+package com.example.android2.telas
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.RadioButton
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import java.time.LocalDateTime
+
+@Composable
+fun att(){
+    var text by remember { mutableStateOf("") }
+    val todolist = listOf("Done", "Not Done")
+    val priolist = listOf("Low", "Medium", "High")
+    val agora = LocalDateTime.now()
+    var selectedOption by remember { mutableStateOf(todolist[1]) }
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(5.dp)) {
+        
+        Spacer(modifier = Modifier.width(5.dp))
+        Row() {
+            Image(imageVector = Icons.Default.DateRange, contentDescription = "")
+            Spacer(modifier = Modifier.size(4.dp))
+            Text(text = "UILabs")
+        }
+
+
+
+        Text(text =
+        "Title",
+            fontSize = 25.sp,
+            color = Color.White
+        )
+
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            placeholder = { Text("Enter Title") },
+            modifier = Modifier.fillMaxWidth())
+
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(text =
+        "Status",
+            fontSize = 25.sp,
+            color = Color.White
+        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            todolist.forEach { text ->
+                RadioButton(
+                    selected = (text == selectedOption),
+                    onClick = { selectedOption = text },
+
+                    )
+                Text(text = text)}
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(text =
+        "Priority",
+            fontSize = 25.sp,
+            color = Color.White
+        )
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            priolist.forEach { text ->
+                RadioButton(
+                    selected = (text == selectedOption),
+                    onClick = { selectedOption = text },
+
+                    )
+                Text(text = text)}
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(text =
+        "Time and Date",
+            fontSize = 25.sp,
+            color = Color.White
+        )
+        Column() {
+            Row(modifier = Modifier
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "data")
+                Text(text = "hora")
+            }
+            Row(modifier = Modifier
+                .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Button(onClick = {}) {
+                    Text(text = "Choose Date")
+                }
+                Button(onClick = {}) {
+                    Text(text = "Choose Time")
+                }
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            Row(modifier = Modifier
+                .fillMaxWidth(),
+
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Button(onClick = {}) {
+                    Text(text = "Cancel")
+                }
+                Button(onClick = {}) {
+                    Text(text = "Reset")
+                }
+                Button(onClick = {}) {
+                    Text(text = "Submit")
+                }
+            }
+
+        }
+    }
+
+
+
+}
